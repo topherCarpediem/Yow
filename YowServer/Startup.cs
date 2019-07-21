@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Yow.YowServer.Models;
+using Yow.YowServer.Services;
 
 namespace YowServer
 {
@@ -32,6 +33,9 @@ namespace YowServer
             services.AddDbContext<YowDbContext>(opt => {
                 opt.UseSqlServer("Server=.\\SQLExpress;Database=YowDb;Integrated Security=True;");
             });
+
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICryptoService, CryptoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
