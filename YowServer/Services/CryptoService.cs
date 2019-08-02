@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
@@ -13,14 +14,16 @@ namespace Yow.YowServer.Services
             byte[] publicKey = null;
             byte[] secretKey = null;
 
-            using (ECDiffieHellmanCng ecdh = new ECDiffieHellmanCng())
+            CngKey cngKey = CngKey.Create(CngAlgorithm.ECDiffieHellmanP256, null, new CngKeyCreationParameters { ExportPolicy = CngExportPolicies.AllowPlaintextExport });
+
+            using (ECDiffieHellmanCng ecdh = new ECDiffieHellmanCng(cngKey))
             {
                 publicKey = ecdh.Key.Export(CngKeyBlobFormat.EccPublicBlob);
                 secretKey = ecdh.Key.Export(CngKeyBlobFormat.EccPrivateBlob);
             }
 
-            eccKeyValuePair.Add("publicKey", publicKey);
-            eccKeyValuePair.Add("secretKey", secretKey);
+            eccKeyValuePair.Add("publicKey", publicKey.Skip(8).ToArray());
+            eccKeyValuePair.Add("secretKey", secretKey.Skip(publicKey.Length).ToArray());
 
             return eccKeyValuePair;
         }

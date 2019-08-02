@@ -20,9 +20,27 @@ namespace Yow.YowServer.Models
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
-                entity.HasOne<KeyVault>(u => u.KeyVault)
+                entity.HasOne(u => u.KeyVault)
                       .WithOne(kv => kv.User)
-                      .HasForeignKey<KeyVault>(kv => kv.UserId);
+                      .HasForeignKey<KeyVault>(kv => kv.UserId);       
+            });
+
+
+            modelBuilder.Entity<Message>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
+                entity.HasOne(m => m.Reciever)
+                    .WithMany(u => u.RecieverMessages)
+                    .HasForeignKey(m => m.RecieverId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(m => m.Sender)
+                    .WithMany(u => u.SenderMessages)
+                    .HasForeignKey(m => m.SenderId)
+                    .OnDelete(DeleteBehavior.Restrict);
             });
         }
 

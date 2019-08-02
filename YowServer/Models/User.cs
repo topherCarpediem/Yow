@@ -12,5 +12,7 @@ namespace Yow.YowServer.Models
 
 
         public KeyVault KeyVault { get; set; }
+        public ICollection<Message> SenderMessages { get; set; }
+        public ICollection<Message> RecieverMessages { get; set; }
     }
 }

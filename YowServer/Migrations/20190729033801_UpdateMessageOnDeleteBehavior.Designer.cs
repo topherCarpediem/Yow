@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Yow.YowServer.Models;
 
 namespace YowServer.Migrations
 {
     [DbContext(typeof(YowDbContext))]
-    partial class YowDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190729033801_UpdateMessageOnDeleteBehavior")]
+    partial class UpdateMessageOnDeleteBehavior
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,9 +49,11 @@ namespace YowServer.Migrations
 
                     b.Property<DateTime>("DateCreated");
 
-                    b.Property<Guid>("RecieverId");
+                    b.Property<byte[]>("Nonce");
 
-                    b.Property<Guid>("SenderId");
+                    b.Property<Guid?>("RecieverId");
+
+                    b.Property<Guid?>("SenderId");
 
                     b.HasKey("Id");
 

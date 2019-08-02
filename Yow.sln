@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YowServer", "YowServer\YowServer.csproj", "{F3742CF9-C1C3-48F4-9394-2E2B635556EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YowCliClient", "YowCliClient\YowCliClient.csproj", "{040ADF0A-E100-4B68-8E89-A60A5A604869}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YowCliClient", "clients\YowCliClient\YowCliClient.csproj", "{040ADF0A-E100-4B68-8E89-A60A5A604869}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
