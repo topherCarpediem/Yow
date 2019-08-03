@@ -1,0 +1,19 @@
+version: '3.4'
+
+services: 
+
+  sql.data:
+    image: mcr.microsoft.com/mssql/server
+
+  yow.api:
+    image: ${REGISTRY:-yow}/yow.api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/YowServer/Dockerfile
+    depends_on: 
+      - sql.data
+
+  yow.webclient:
+    image: ${REGISTRY:-yow}/yow.webclient:${TAG:-latest}
+    depends_on: 
+      - yow.api

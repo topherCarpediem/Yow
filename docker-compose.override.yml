@@ -1,0 +1,33 @@
+version: '3.4'
+
+services: 
+  sql.data:
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    volumes: 
+      - ./data/mssql:/var/opt/mssql
+    ports:
+      - "5433:1433" 
+
+  yow.api:
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+    volumes: 
+      - ./src/YowServer:/app
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    ports: 
+      - "5100:80"
+
+  yow.webclient:
+    environment: 
+      - NODE_ENV=Development
+    build:
+      context: .
+      dockerfile: src/clients/yow-react-client/Dockerfile
+    volumes: 
+      - ./src/clients/yow-react-client:/app
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    ports: 
+      - "5200:3000"

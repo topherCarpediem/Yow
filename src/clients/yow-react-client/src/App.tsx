@@ -16,7 +16,7 @@ class App extends React.Component<{}> {
         .configureLogging(LogLevel.Debug)
         .withUrl("https://localhost:44394/chatHub")
         .build();
-
+    
     this.connection.start()
     .then(() => {
 

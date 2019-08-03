@@ -1,4 +1,4 @@
-**/node_modules
+node_modules
 npm-debug.log
 Dockerfile*
 docker-compose*
@@ -6,10 +6,8 @@ docker-compose*
 .git
 .gitignore
 .env
-**/bin
-**/obj
+*/bin
+*/obj
 README.md
 LICENSE
 .vscode
-
-
