@@ -1,0 +1,1 @@
+dotnet run --urls=$ASPNETCORE_URLS

@@ -23,9 +23,10 @@ namespace YowServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            string connectionString = Configuration["ConnectionString"];
 
             services.AddDbContext<YowDbContext>(opt => {
-                opt.UseSqlServer("Server=.\\SQLExpress;Database=YowDb;Integrated Security=True;");
+                opt.UseSqlServer(connectionString);
             });
 
             services.AddSignalR();
@@ -35,7 +36,7 @@ namespace YowServer
                 opt.AddPolicy("AllowedOriginPolicy",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:3000")
+                        builder.WithOrigins("http://localhost:5200")
                             .AllowAnyHeader()
                             .AllowAnyMethod()
                             .AllowCredentials();

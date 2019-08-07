@@ -15,5 +15,8 @@ services:
 
   yow.webclient:
     image: ${REGISTRY:-yow}/yow.webclient:${TAG:-latest}
+    build: 
+      context: .
+      dockerfile:  src/clients/yow-react-client/Dockerfile
     depends_on: 
       - yow.api

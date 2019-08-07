@@ -8,26 +8,15 @@ services:
     volumes: 
       - ./data/mssql:/var/opt/mssql
     ports:
-      - "5433:1433" 
+      - "5433:1433"
+
 
   yow.api:
     environment: 
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
-    volumes: 
-      - ./src/YowServer:/app
-    command: /bin/sh -c "while sleep 1000; do :; done"
+      - ConnectionString=Server=sql.data;Database=Yow.Service.ChatDb;User Id=sa;Password=Pass@word
     ports: 
       - "5100:80"
 
-  yow.webclient:
-    environment: 
-      - NODE_ENV=Development
-    build:
-      context: .
-      dockerfile: src/clients/yow-react-client/Dockerfile
-    volumes: 
-      - ./src/clients/yow-react-client:/app
-    command: /bin/sh -c "while sleep 1000; do :; done"
-    ports: 
-      - "5200:3000"
+  

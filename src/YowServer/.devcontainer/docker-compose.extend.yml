@@ -1,0 +1,10 @@
+version: '3.4'
+
+services: 
+  yow.api:
+    build: 
+      context: .
+      dockerfile: ./src/YowServer/.devcontainer/Dockerfile
+    volumes: 
+      - ./src/YowServer:/code
+    command: /bin/sh -c "while sleep 1000; do :; done"

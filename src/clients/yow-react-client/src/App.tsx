@@ -14,8 +14,9 @@ class App extends React.Component<{}> {
 
     this.connection = new HubConnectionBuilder()
         .configureLogging(LogLevel.Debug)
-        .withUrl("https://localhost:44394/chatHub")
+        .withUrl("http://localhost:5100/chatHub")
         .build();
+
     
     this.connection.start()
     .then(() => {
@@ -25,8 +26,6 @@ class App extends React.Component<{}> {
       console.log(err)
     })
   }
-
-
 
   encryptDecrypt = async () => {
 

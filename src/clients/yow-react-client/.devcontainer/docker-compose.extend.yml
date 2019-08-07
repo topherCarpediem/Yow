@@ -1,0 +1,13 @@
+version: '3.4'
+
+services: 
+  yow.webclient:
+    build: 
+      context: .
+      dockerfile: ./src/clients/yow-react-client/.devcontainer/Dockerfile
+    volumes: 
+      - ./src/clients/yow-react-client:/code
+    ports:
+      - "5200:3000"
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    

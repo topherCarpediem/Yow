@@ -1,0 +1,17 @@
+// See https://aka.ms/vscode-remote/devcontainer.json for format details.
+{
+	"name": "Yow React Client",
+	"dockerComposeFile": [
+		"../../../../docker-compose.yml",
+		"../../../../docker-compose.override.yml",
+		"../../../../src/YowServer/.devcontainer/docker-compose.extend.yml",
+		"docker-compose.extend.yml",
+	],
+	"service": "yow.webclient",
+	"workspaceFolder": "/code",
+	"extensions": [
+		"msjsdiag.debugger-for-chrome"
+	],
+	"shutdownAction": "none",
+	"postCreateCommand": "yarn install"
+}
